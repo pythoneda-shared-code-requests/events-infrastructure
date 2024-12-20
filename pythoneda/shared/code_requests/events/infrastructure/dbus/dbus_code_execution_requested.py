@@ -100,7 +100,7 @@ class DbusCodeExecutionRequested(BaseObject, ServiceInterface):
         :return: The CodeExecutionRequested event.
         :rtype: pythoneda.shared.code_requests.events.CodeExecutionRequested
         """
-        code_request, event_id, prev_event_ids = message.body
+        code_request, prev_event_ids, event_id = message.body
         return CodeExecutionRequested(
             code_request,
             json.loads(prev_event_ids),

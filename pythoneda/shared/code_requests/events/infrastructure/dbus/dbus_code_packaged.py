@@ -25,6 +25,7 @@ import json
 from pythoneda.shared import BaseObject
 from pythoneda.shared.code_requests.events import CodePackaged
 from pythoneda.shared.code_requests.events.infrastructure.dbus import DBUS_PATH
+from pythoneda.shared.nix import NixFlake
 from typing import List
 
 
@@ -100,9 +101,9 @@ class DbusCodePackaged(BaseObject, ServiceInterface):
         :return: The CodePackaged event.
         :rtype: pythoneda.shared.code_requests.events.CodePackaged
         """
-        nix_flake, event_id, prev_event_ids = message.body
+        nix_flake, prev_event_ids, event_id = message.body
         return CodePackaged(
-            nix_flake,
+            NixFlake.from_json(nix_flake),
             json.loads(prev_event_ids),
             event_id,
         )

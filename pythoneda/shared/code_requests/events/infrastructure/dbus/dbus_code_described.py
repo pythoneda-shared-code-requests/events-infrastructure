@@ -100,7 +100,7 @@ class DbusCodeDescribed(BaseObject, ServiceInterface):
         :return: The CodeDescribed event.
         :rtype: pythoneda.shared.code_requests.events.CodeDescribed
         """
-        code_request, event_id, prev_event_ids = message.body
+        code_request, prev_event_ids, event_id = message.body
         return CodeDescribed(
             code_request,
             json.loads(prev_event_ids),

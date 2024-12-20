@@ -100,7 +100,7 @@ class DbusCodeExecutionPackaged(BaseObject, ServiceInterface):
         :return: The CodeExecutionPackaged event.
         :rtype: pythoneda.shared.code_requests.events.CodeExecutionPackaged
         """
-        nix_flake, event_id, prev_event_ids = message.body
+        nix_flake, prev_event_ids, event_id = message.body
         return CodeExecutionPackaged(
             nix_flake,
             json.loads(prev_event_ids),
